@@ -3,20 +3,29 @@ class Bird {
         this.x = 150;
         this.y = 200;
         this.vy = 0;
-        this.width = 20;
-        this.height = 1;
+        this.width = 30;
+        this.height = 30;
+        this.weight = 1;
 
     }
     update(){
-        if (this.y > canvas.height - this.height){
-            this.y = canvas.height - this.height;
+        let curve = Math.sin(angle) * 10;
+        if (this.y > canvas.height - (this.height * 3) + curve){
+            this.y = canvas.height - (this.height * 3) + curve;
+            this.vy = 0;
+        } else {
+            this.vy += this.weight;
+            this.vy *= 0.9;
+            this.y += this.vy;
+        }
+        if (this.y < 0 + this.height){
+            this.y = 0 + this.height;
             this.vy = 0;
         }
-        this.vy += this.weight;
-        this.y += this.vy;
+        if (spacePressed && this.y > this.height * 3) this.flap();
     }
     draw(){
-        ctx.fillstyle = 'pink';
+        ctx.fillStyle = 'pink';
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     flap(){
