@@ -52,8 +52,9 @@ function animate() {
 
 animate();
 
+
 window.addEventListener('keydown', function(e){
-    if (e.code === "Space") spacePressed = true;
+    if (e.code === "Space" || e.touchstart === touchstart) spacePressed = true;
 });
 
 window.addEventListener('keyup', function(e){
