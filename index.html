@@ -3,17 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Flappy Butterlfy</title>
+    <title>Flappy Bird</title>
     <link rel="StyleSheet" href="style.css"> 
 </head>
 
 <body>
-    <canvas id="canvas1"></canvas>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="replayButton">
+        <Img src="Images/replay.png"></Img>
+    </div>
+    <div id="startButton">
+        <img src="Images/startButton.png"></img>   
+    </div>
 
     <script src="bird.js"></script>
     <script src="particles.js"></script>
     <script src="obstacles.js"></script>
+    <script src="startScreen.js"></script>
     <script src="main.js"></script>
+    
 
 </body>
 

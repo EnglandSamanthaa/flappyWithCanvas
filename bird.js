@@ -1,6 +1,7 @@
 const birdSprite = new Image();
 birdSprite.src = 'Images/birdSpriteSheet.png';
 
+
 class Bird {
     constructor(){
         this.x = 150;
@@ -12,12 +13,11 @@ class Bird {
         this.height = this.orginalHeight/30;
         this.weight = 1;
         this.frameX = 0;
-
     }
     update(){
         let curve = Math.sin(angle) * 10;
-        if (this.y > canvas.height - (this.height * 3) + curve){
-            this.y = canvas.height - (this.height * 3) + curve;
+        if (this.y > canvas.height - (this.height * 2) + curve){
+            this.y = canvas.height - (this.height * 2) + curve;
             this.vy = 0;
         } else {
             this.vy += this.weight;
@@ -31,14 +31,15 @@ class Bird {
         if (spacePressed && this.y > this.height * 3) this.flap();
     }
     draw(){
-        //ctx.fillStyle = 'pink';
-        //ctx.fillRect(this.x, this.y, this.width, this.height);
+        //uncomment next 2 lines to show box for collision detection. 
+        // ctx.fillStyle = 'pink';
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(birdSprite, this.frameX * this.orginalWidth, 0, this.orginalWidth, this.orginalHeight, this.x - 15, this.y - 8, this.width * 1.5, this.height * 1.5);
     }
     flap(){
-        this.vy -= 2;
+        this.vy -= 2.5;
         if (this.frameX >= 7) this.frameX = 0;
-        else if(frame%8 === 0) this.frameX++;
+        else if(frame%2 === 0) this.frameX++;
 
     }
 }
