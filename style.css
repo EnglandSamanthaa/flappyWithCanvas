@@ -1,9 +1,44 @@
-#canvas1 {
+body {
+    display: flex;
+    margin: 0;
+}
+#gameCanvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
     border: 2px solid black;
 }
+
+#startButton {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 400px;
+    background-color: rgba(240, 255, 255, 0.541);
+    border-radius: 15%;
+}
+    #startButton img {
+        height: 200px;
+        width: 400px;
+    }
+
+#replayButton {
+    z-index: 1;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 500px;
+    display: none;
+}
+    #replayButton img {
+        height: 200px;
+        width: 500px;
+    }
