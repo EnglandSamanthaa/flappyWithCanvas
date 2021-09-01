@@ -1,6 +1,7 @@
 body {
     display: flex;
     margin: 0;
+
 }
 #gameCanvas {
     position: absolute;
@@ -10,12 +11,13 @@ body {
     width: 700px;
     height: 500px;
     border: 2px solid black;
+    display: none;
 }
 
 #startButton {
     z-index: 1;
     position: absolute;
-    top: 50%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 200px;
@@ -26,6 +28,27 @@ body {
     #startButton img {
         height: 200px;
         width: 400px;
+    }
+
+
+#char {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 1000px;
+}
+    #char div{
+        margin: 0;
+        height: 200px;
+        width: 200px;
+    }
+    #char img {
+        height: 200px;
+        width: 200px;
     }
 
 #replayButton {

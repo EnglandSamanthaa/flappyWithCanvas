@@ -17,12 +17,14 @@ class Obstacle {
     }
     update(){
         this.x -= gameSpeed;
-        if (!this.counted && this.x < bird.x){
+        if (!this.counted && this.x < char.x){
             score++;
             this.counted = true;
         }
         this.draw();
     }
+
+
 }
 
 function handleObstactles(){
@@ -35,4 +37,7 @@ function handleObstactles(){
     if (obstaclesArray.length > 20){
         obstaclesArray.pop(obstaclesArray[0]);
     }
+
+
 }
+
