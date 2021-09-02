@@ -15,6 +15,8 @@ const playerSection = document.getElementById('char')
 playerSection.height = 200;
 playerSection.width = 200;
 
+const pickCharDisplay = document.getElementById('pickCharDisplay')
+
 
 const green = document.getElementById('green');
 const pink = document.getElementById('pink');
@@ -62,23 +64,129 @@ window.addEventListener('keyup', function (e) {
 
 pink.addEventListener("click", function (evnt){
     char = pinkBird;
+    pink.style.border = "5px solid pink";
+    pink.style.paddingTop = '5px';
+    pink.style.paddingLeft = '5px'
+    pink.style.paddingRight = '5px';    
+    pink.style.zIndex = '1';
+
+    green.style.border = 'none';
+    green.style.padding = '0';
+    green.style.zIndex = '0';
+
+    grumpy.style.border = 'none';
+    grumpy.style.padding = '0';
+    grumpy.style.zIndex = '0';
+    
+    gentleman.style.border = 'none';
+    gentleman.style.padding = '0';
+    gentleman.style.zIndex = '0';
+
+    dragon.style.border = 'none';
+    dragon.style.padding = '0';
+    dragon.style.zIndex = '0';
 });
 
 green.addEventListener("click", function (evnt){
     char = bird;
+    green.style.border = '5px solid green';
+    green.style.paddingTop = '25px';
+    green.style.paddingLeft = '5px'
+    green.style.paddingRight = '5px';
+    green.style.zIndex = '1';
+   
+    pink.style.border = 'none';
+    pink.style.padding = '0';
+    pink.style.zIndex = '0';
+
+    grumpy.style.border = 'none';
+    grumpy.style.padding = '0';
+    grumpy.style.zIndex = '0';
+    
+    gentleman.style.border = 'none';
+    gentleman.style.padding = '0';
+    gentleman.style.zIndex = '0';
+
+    dragon.style.border = 'none';
+    dragon.style.padding = '0';
+    dragon.style.zIndex = '0';
 });
 
 grumpy.addEventListener("click", function (evnt){
     char = grumpyBird;
+    grumpy.style.border = '5px solid brown';
+    grumpy.style.paddingTop = '30px';
+    grumpy.style.paddingLeft = '3px'
+    grumpy.style.paddingRight = '5px';
+    grumpy.style.zIndex = '1';
+
+    pink.style.border = 'none';
+    pink.style.padding = '0';
+    pink.style.zIndex = '0';
+    
+    green.style.border = 'none';
+    green.style.padding = '0';
+    green.style.zIndex = '0';
+    
+    gentleman.style.border = 'none';
+    gentleman.style.padding = '0';
+    gentleman.style.zIndex = '0';
+    
+    dragon.style.border = 'none';
+    dragon.style.padding = '0';
+    dragon.style.zIndex = '0';
 });
 
 gentleman.addEventListener("click", function (evnt){
     char = gentlemanBird;
+    gentleman.style.border = '5px solid purple';
+    gentleman.style.paddingTop = '5px';
+    gentleman.style.paddingLeft = '10px'
+    gentleman.style.paddingRight = '5px';
+    gentleman.style.zIndex = '1';
+
+    pink.style.border = 'none';
+    pink.style.padding = '0';
+    pink.style.zIndex = '0';
+    
+    green.style.border = 'none';
+    green.style.padding = '0';
+    green.style.zIndex = '0';
+
+    grumpy.style.border = 'none';
+    grumpy.style.padding = '0';
+    grumpy.style.zIndex = '0';
+
+    dragon.style.border = 'none';
+    dragon.style.padding = '0';
+    dragon.style.zIndex = '0';
 });
 
 dragon.addEventListener("click", function (evnt){
     char = dragonChar;
-})
+    dragon.style.border = '5px solid orange';
+    dragon.style.paddingTop = '30px';
+    dragon.style.paddingLeft = '3px'
+    dragon.style.paddingRight = '5px';
+    dragon.style.zIndex = '1';
+
+    pink.style.border = 'none';
+    pink.style.padding = '0';
+    pink.style.zIndex = '0';
+
+    green.style.border = 'none';
+    green.style.padding = '0';
+    green.style.zIndex = '0';
+
+    grumpy.style.border = 'none';
+    grumpy.style.padding = '0';
+    grumpy.style.zIndex = '0';
+    
+    gentleman.style.border = 'none';
+    gentleman.style.padding = '0';
+    gentleman.style.zIndex = '0';
+    
+});
 
 // ufo.addEventListener("click", function (evnt){
 //     char = ufoChar;
@@ -89,6 +197,7 @@ dragon.addEventListener("click", function (evnt){
 startButton.addEventListener("click", function (evnt) {
     startButton.style.display = 'none';
     playerSection.style.display = 'none';
+    pickCharDisplay.style.display = 'none';
     canvas.style.display = 'block';
 
     // console.log('start');
@@ -120,6 +229,7 @@ replay.addEventListener("click", function (evnt) {
 
     startButton.style.display = 'block';
     playerSection.style.display = 'flex';
+    pickCharDisplay.style.display = 'block';
 
 });
 

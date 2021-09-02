@@ -256,7 +256,7 @@ class Dragon {
         //uncomment next 2 lines to show box for collision detection. 
         // ctx.fillStyle = 'pink';
         // ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(dragonSprite, this.frameX * this.orginalWidth, 0, this.orginalWidth, this.orginalHeight, this.x - 20, this.y, this.width * 1.4, this.height * 1.2);
+        ctx.drawImage(dragonSprite, this.frameX * this.orginalWidth, 0, this.orginalWidth, this.orginalHeight, this.x - 20, this.y - 20, this.width * 1.5, this.height * 1.5);
     }
     flap() {
         this.vy -= 2.5;
