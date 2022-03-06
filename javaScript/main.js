@@ -2,15 +2,15 @@
 const height = 600;
 const width = 800;
 
-// const gameCanvas = document.getElementById('gameCanvas');
-// const ctx = gameCanvas.getContext('2d');
-// gameCanvas.height = height;
-// gameCanvas.width = width;
-
 const homeScreenCanvas = document.getElementById('startCanvas');
 const ctxStart = homeScreenCanvas.getContext('2d');
 homeScreenCanvas.height = height;
 homeScreenCanvas.width = width;
+
+const gameScreenCanvas = document.getElementById('gameCanvas');
+const ctxGame = gameScreenCanvas.getContext('2d');
+gameScreenCanvas.height = height;
+gameScreenCanvas.width = width;
 
 const startButton = new Image();
 startButton.src = 'Images/startButton.png'
@@ -112,6 +112,10 @@ homeScreenCanvas.addEventListener('click', (event) => {
     //listens for start button to be pressed
     if (x >= startButtonX + 20 && x <= startButtonX + startButtonWidth && y >= startButtonY + 24 && y <= startButtonY+ startButtonHeight - 22) {
         console.log('start button pressed');
+        homeScreenCanvas.style.display = 'none';
+
+        gamePlay();
+
     }
 
 });
@@ -132,9 +136,17 @@ function handleBackground() {
 
     if (homeScreenCanvas.style.display === 'none') {
         //runs the scrolling background during game play.
-        ctx.drawImage(backgroundLayer4, BG.x1, BG.y, BG.width, BG.height);
-        ctx.drawImage(backgroundLayer4, BG.x2, BG.y, BG.width, BG.height);
-        console.log('game background scrolling');
+        ctxGame.drawImage(backgroundLayer5, BG.x1, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer5, BG.x2, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer1, BG.x1, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer1, BG.x2, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer2, BG.x1, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer2, BG.x2, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer4, BG.x1, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer4, BG.x2, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer3, BG.x1, BG.y, BG.width, BG.height);
+        ctxGame.drawImage(backgroundLayer3, BG.x2, BG.y, BG.width, BG.height);
+        // console.log('game background scrolling');
     } else {
         gameSpeed = 1;
         //runs the scrolling background when on the homescreen.
@@ -171,3 +183,18 @@ function homeScreen() {
 
 
 homeScreen();
+
+
+function gamePlay(){
+    ctxGame.clearRect(0, 0, gameScreenCanvas.width, gameScreenCanvas.height);
+    
+    handleBackground();
+
+    handleObstactles();
+
+    requestAnimationFrame(gamePlay);
+
+    frame++;
+
+
+}

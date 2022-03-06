@@ -5,7 +5,6 @@ green.src = 'Images/green.png';
 const pink = new Image();
 pink.src = 'Images/pink.png';
 
-
 const grumpy = new Image();
 grumpy.src = 'Images/grumpy.png';
 
