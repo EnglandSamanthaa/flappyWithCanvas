@@ -13,6 +13,7 @@ body {
 
 #gameCanvas {
     display: none;
+    z-index: -1;
 }
 
 #startCanvas, #gameCanvas {
