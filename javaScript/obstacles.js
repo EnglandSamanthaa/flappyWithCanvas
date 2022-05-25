@@ -10,9 +10,8 @@ class Obstacle {
     constructor(){
         this.top = (Math.random() * gameScreenCanvas.height/5) + 30;
         this.bottom = (Math.random() * gameScreenCanvas.height/3) + 30;
-        this.x = gameScreenCanvas.width;
-        this.width = 60;
-        this.color = 'yellow';
+        this.x = gameScreenCanvas.width + 60;
+        this.width = 100;
         this.counted = false;
 
         pipeBottom.height = this.top;
@@ -23,8 +22,8 @@ class Obstacle {
         let pipeBottomHeight = this.bottom;
         let pipeTopHeight = this.top;
 
-        ctxGame.drawImage(pipeTop, this.x - 40, 0, this.width * 2, this.top);
-        ctxGame.drawImage(pipeBottom, this.x - 40, gameScreenCanvas.height - this.bottom, this.width * 2, this.bottom);
+        ctxGame.drawImage(pipeTop, this.x - 40, 0, this.width, this.top);
+        ctxGame.drawImage(pipeBottom, this.x - 40, gameScreenCanvas.height - this.bottom, this.width, this.bottom);
     }
 
     update(){
