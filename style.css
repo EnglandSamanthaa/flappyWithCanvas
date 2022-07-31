@@ -8,18 +8,9 @@ html, body {
     top: 0;
     left: 0;
 }
-/* body {
-    margin: 0;
 
-    background-color: black;
-    background-image: url("Images/stars.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
-    display: block;
-} */
 
+/* 
 #gameCanvas {
     z-index: -1;
 
@@ -29,4 +20,4 @@ html, body {
     position:absolute;
     top: 0;
     left: 0;
-}
+} */
