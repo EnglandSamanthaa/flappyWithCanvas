@@ -40,37 +40,28 @@ const grumpyBirdOrginalHeight = 814;
 const grumpyBirdOrginalWidth = 802;
 
 
-// ------------------------               Homescreen player selection constructor. 
+
+//draws the player choices for homescreen selection
+function drawPlayerSelection() {
+  //draws green bird on the start screen
+  ctxStart.drawImage(greenSelection, greenBirdSelection.xpoint, greenBirdSelection.ypoint, greenBirdSelection.width, greenBirdSelection.height);
+  //draws pink bird on the start screen
+  ctxStart.drawImage(pinkSelection, pinkBirdSelection.xpoint, pinkBirdSelection.ypoint, pinkBirdSelection.width, pinkBirdSelection.height);
+  //draws grumpy bird on the start screen
+  ctxStart.drawImage(grumpySelection, grumpyBirdSelection.xpoint, grumpyBirdSelection.ypoint, grumpyBirdSelection.width, grumpyBirdSelection.height);
+};
+
+// Homescreen player selection constructor. 
 class CharacterSelection {
   constructor(xpoint, ypoint, height, width) {
     this.xpoint = xpoint;
     this.ypoint = ypoint;
     this.height = height;
     this.width = width;
-  }
-}
-
-// variable image of player to selection from on homescreen
-const greenBirdSelection = new CharacterSelection(greenSelectionX, greenSelectionY, greenSelectionHeight, greenSelectionWidth);
-const pinkBirdSelection = new CharacterSelection(pinkSelectionX, pinkSelectionY, pinkSelectionHeight, pinkSelectionWidth);
-const grumpyBirdSelection = new CharacterSelection(grumpySelectionX, grumpySelectionY, grumpySelectionHeight, grumpySelectionWidth);
-
-
-
-//draws the player choices for homescreen selection
-function drawPlayerSelection() {
-
-  //draws green bird on the start screen
-  ctxStart.drawImage(greenSelection, greenBirdSelection.xpoint, greenBirdSelection.ypoint, greenBirdSelection.width, greenBirdSelection.height);
-  
-  //draws pink bird on the start screen
-  ctxStart.drawImage(pinkSelection, pinkBirdSelection.xpoint, pinkBirdSelection.ypoint, pinkBirdSelection.width, pinkBirdSelection.height);
-  
-  //draws grumpy bird on the start screen
-  ctxStart.drawImage(grumpySelection, grumpyBirdSelection.xpoint, grumpyBirdSelection.ypoint, grumpyBirdSelection.width, grumpyBirdSelection.height);
+  };
 };
 
-
+// In game character constructor
 class GamePlayCharacter {
   constructor(name, x, y, orginalWidth, orginalHeight, width, height, frameCount, spriteSheet){
     this.name = name;
@@ -85,8 +76,8 @@ class GamePlayCharacter {
     this.frameX = 0;
     this.frameCount = frameCount;
     this.spriteSheet = spriteSheet;
+  };
 
-  }
   update(){
     let curve = Math.sin(angle) * 10;
     if (this.y > gameScreenCanvas.height - (this.height)+ curve) {
@@ -97,25 +88,30 @@ class GamePlayCharacter {
         this.vy *= .6;
         this.y += this.vy;
       }
-
     if (this.y < 0 + this.height) {
       this.y = 0 + this.height;
       this.vy = 0;
     }
-
     if (spacePressed && this.y > this.height) this.flap();
-  }
+  };
+
   draw(){
     // ctxGame.fillStyle = 'pink';
     // ctxGame.fillRect(this.x, this.y, this.width, this.height);
     ctxGame.drawImage(this.spriteSheet, this.frameX * this.orginalWidth, 0, this.orginalWidth, this.orginalHeight, this.x, this.y, this.width, this.height);
-  }
+  };
+
   flap(){
     this.vy -= 5;
     if (this.frameX >= this.frameCount) this.frameX = 0;
     else if (frame % 2 === 0) this.frameX++;
-  }
-}
+  };
+};
+
+// image of player to selection from on homescreen
+const greenBirdSelection = new CharacterSelection(greenSelectionX, greenSelectionY, greenSelectionHeight, greenSelectionWidth);
+const pinkBirdSelection = new CharacterSelection(pinkSelectionX, pinkSelectionY, pinkSelectionHeight, pinkSelectionWidth);
+const grumpyBirdSelection = new CharacterSelection(grumpySelectionX, grumpySelectionY, grumpySelectionHeight, grumpySelectionWidth);
 
 // in game characters
 const greenBirdCharacter = new GamePlayCharacter('Green Bird', 300, 200, greenBirdOrginalWidth, greenBirdOrginalHeight, greenBirdOrginalWidth/12.26, greenBirdOrginalHeight/12.26, 7, greenBirdSprite);

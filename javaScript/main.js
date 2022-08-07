@@ -90,7 +90,7 @@ function handleBackground() {
         ctxGame.drawImage(backgroundLayer4, BG.x2, BG.y, BG.width, BG.height);
         ctxGame.drawImage(backgroundLayer3, BG.x1, BG.y, BG.width, BG.height);
         ctxGame.drawImage(backgroundLayer3, BG.x2, BG.y, BG.width, BG.height);
-        // console.log('game background scrolling');
+        console.log('game background scrolling');
     } else {
         //will change how fast the background moves
         gameSpeed = 1;
@@ -135,24 +135,17 @@ function homeScreen() {
 
 
 function handleCollisons(){
-
     for(let i = 0; i < obstaclesArray.length; i++){
-        //determining if bird comes into contact with an obstacle
-        if (char.x <= obstaclesArray[i].x + obstaclesArray[i].width
-            //left side of obstacle
-            && char.x + char.width >= obstaclesArray[i].x
-            //top side of bottom obstatcles 
-            && ((char.y <= 0 + obstaclesArray[i].top     
-            && char.y + char.height > 0) 
-            //bottoms of top obstacles
-            || (char.y >= gameScreenCanvas.height - (obstaclesArray[i].bottom) 
-            && char.y + char.height < gameScreenCanvas.height))
-            ){
-               return true; 
-            };
+         //determining if bird comes into contact with an obstacle
+        if((char.x + char.width > obstaclesArray[i].x && char.x < obstaclesArray[i].x + obstaclesArray[i].width && char.y - 10 < obstaclesArray[i].top)
+            || (char.x + char.width > obstaclesArray[i].x && char.x < obstaclesArray[i].x + obstaclesArray[i].width && char.y - 20 + char.height > obstaclesArray[i].bottomObstacleYPosition)){
+                console.log("character x:", char.x + char.width, "characterTop y:", char.y - 10, "characterBottom y: ", char.y - 20 + char.height, "obstacle x:", obstaclesArray[i].x, "obstacle top:", obstaclesArray[i].top, "obstacle bottom:", obstaclesArray[i].bottom);
+                 return true; 
+        };
     };
 };
 
+//reloads the homescreen and resets game variables
 function returnToHomeScreen(){
     gameScreenCanvas.style.display = 'none';
     homeScreenCanvas.style.display = 'block';
@@ -172,29 +165,32 @@ function returnToHomeScreen(){
 
 
 function gamePlay(){
-
     ctxGame.clearRect(0, 0, gameScreenCanvas.width, gameScreenCanvas.height);
     
     //function on main.js... deals with the scrolling background. 
     //(((Find a way to shorten that code and easily pass in other backgrounds)))
     handleBackground();
-
+    
     //function is on obstacle.js.... creates the pipes on the top and bottom of the screen
     handleObstactles();
 
+    handleParticles();
+
+    //score count on the bottom right corner
     ctxGame.font = '100px Black Ops One';
     ctxGame.fillStyle = 'white';
     ctxGame.fillText('Score : ' + score, (canvasWidth/4)*2.5, (canvasHeight/4) * 3.5, (canvasWidth/4), (canvasHeight/10));
 
     //function is on bird.js in character constructor... draws the character onto the gamescreen during game play
     char.draw();
-
     //function is on bird.js in character constructor... updates the birds position and animates the bird. 
     char.update();
 
+    //function is on main.js.... 
     handleCollisons();
     if(handleCollisons()) {
 
+        //allows for click events on the gameScreenCanvas
         gameScreenCanvas.onclick = function (e){
             console.log('click listener, gameScreen');
             const gameRect = gameScreenCanvas.getBoundingClientRect();
@@ -202,11 +198,11 @@ function gamePlay(){
             const gameY = e.clientY - gameRect.top;
             console.log("x: " + gameX + " y: " + gameY);
             console.log(e);
-
+            //when the home button is pressed
             if(gameX >= 100 && gameX <= 200 && gameY >= 100 && gameY <= 200){
                 homeScreenReturnAllCharacterOptionsToOrigninalSize();
                 returnToHomeScreen();
-            }
+            };
         };
 
         ctxGame.font = '200px Black Ops One';
@@ -225,6 +221,7 @@ function gamePlay(){
     frame++;
 };
 
+//makes the green bird larger when clicked on homescreen, resets any other bird's size
 function homeScreenGreenBirdSelectedResize(){
     greenBirdSelection.ypoint = greenBirdSelection.ypoint - 5;
     greenBirdSelection.height = greenSelectionHeight * 1.5;
@@ -235,6 +232,7 @@ function homeScreenGreenBirdSelectedResize(){
     grumpyBirdSelection.width = grumpySelectionWidth;   
 };
 
+//makes the pink bird larger when clicked on homescreen, resets any other bird's size
 function homeScreenPinkBirdSelectedResize(){
     greenBirdSelection.height = greenSelectionHeight;
     greenBirdSelection.width = greenSelectionWidth;
@@ -245,6 +243,7 @@ function homeScreenPinkBirdSelectedResize(){
     grumpyBirdSelection.width = grumpySelectionWidth;
 };
 
+//makes the grumpy bird larger when clicked on homescreen, resets any other bird's size
 function homeScreenGrumpyBirdSelectedResize(){
     greenBirdSelection.height = greenSelectionHeight;
     greenBirdSelection.width = greenSelectionWidth;
@@ -255,6 +254,7 @@ function homeScreenGrumpyBirdSelectedResize(){
     grumpyBirdSelection.ypoint = grumpyBirdSelection.ypoint - 5;
 };
 
+//resets all homeScreen characters choice to default size
 function homeScreenReturnAllCharacterOptionsToOrigninalSize(){
     greenBirdSelection.height = greenSelectionHeight;
     greenBirdSelection.width = greenSelectionWidth;
@@ -264,7 +264,7 @@ function homeScreenReturnAllCharacterOptionsToOrigninalSize(){
     grumpyBirdSelection.width = grumpySelectionWidth;
 }
 
-homeScreen();
+
 
 // ------------------------------------------------------    event listeners    -------------------------------------------------------------------
 
@@ -279,76 +279,70 @@ window.addEventListener('keyup', function (e) {
 });
 
 
-
-
 window.onload = (event) => {
+    homeScreen();
 
-
-//listens for mouse clicks on the homeScreencanvas
-homeScreenCanvas.onclick = function(event) {
-    console.log('click listener');
-    const rect = homeScreenCanvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    console.log("x: " + x + " y: " + y);
-    console.log(event);
+    //listens for mouse clicks on the homeScreencanvas
+    homeScreenCanvas.onclick = function(event) {
+        console.log('click listener');
+        const rect = homeScreenCanvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        console.log("x: " + x + " y: " + y);
+        console.log(event);
 
     
-    //listens for a click on the green bird and selects green bird for character.
-    if (x >= greenBirdSelection.xpoint && x <= greenBirdSelection.xpoint + greenBirdSelection.width && y >= greenBirdSelection.ypoint && y <= greenBirdSelection.ypoint + greenBirdSelection.height) {
-        //only happens if the character isn't already green bird.
-        if(char != greenBirdCharacter){
-            char = greenBirdCharacter;
-            console.log(char.name);
-            homeScreenGreenBirdSelectedResize()
-        };   
-    };
+        //listens for a click on the green bird and selects green bird for character.
+        if (x >= greenBirdSelection.xpoint && x <= greenBirdSelection.xpoint + greenBirdSelection.width && y >= greenBirdSelection.ypoint && y <= greenBirdSelection.ypoint + greenBirdSelection.height) {
+            //only happens if the character isn't already green bird.
+            if(char != greenBirdCharacter){
+                char = greenBirdCharacter;
+                console.log(char.name);
+                homeScreenGreenBirdSelectedResize()
+            };   
+        };
     
-    //listens for a click on the pink bird and selects pink bird for character
-    if (x >= pinkBirdSelection.xpoint && x <= pinkBirdSelection.xpoint + 175 && y >= pinkBirdSelection.ypoint && y <= pinkBirdSelection.ypoint + 125) {
-        //only happens if pink bird isn't already selected
-        if(char != pinkBirdCharacter){
-            char = pinkBirdCharacter;
-            console.log(char.name);
-            homeScreenPinkBirdSelectedResize();
+        //listens for a click on the pink bird and selects pink bird for character
+        if (x >= pinkBirdSelection.xpoint && x <= pinkBirdSelection.xpoint + 175 && y >= pinkBirdSelection.ypoint && y <= pinkBirdSelection.ypoint + 125) {
+            //only happens if pink bird isn't already selected
+            if(char != pinkBirdCharacter){
+                char = pinkBirdCharacter;
+                console.log(char.name);
+                homeScreenPinkBirdSelectedResize();
+            };
+        };
+
+        //listens for a click on the grumpy bird and selects grumpy bird for character
+        if (x >= grumpyBirdSelection.xpoint && x <= grumpyBirdSelection.xpoint + 175 && y >= grumpyBirdSelection.ypoint && y <= grumpyBirdSelection.ypoint + 125) {
+            //only happens if grumpy bird is not already selected
+            if (char != grumpyBirdCharacter){
+                char = grumpyBirdCharacter;
+                console.log(char.name)
+                homeScreenGrumpyBirdSelectedResize();
+            };
+        };
+
+        //listens for start button to be pressed
+        if (x >= startButtonX + 20 && x <= startButtonX + startButtonWidth && y >= startButtonY + 24 && y <= startButtonY+ startButtonHeight - 22 && char != null) {
+            // console.log('start button pressed');
+
+            homeScreenCanvas.style.display ='none';
+            gameScreenCanvas.style.display = 'block';
+            currentDisplay = 'game'
+            obstaclesArray.length = 0;
+
+            //functions the runs the game location on main.js
+            gamePlay();
+
+            cancelAnimationFrame(homeScreenAnimation);
+            ctxGame.clearRect(0, 0, gameScreenCanvas.width, gameScreenCanvas.height);
+
+            greenBirdCharacter.x = 200;
+            greenBirdCharacter.y = 300;
+            pinkBirdCharacter.x = 200;
+            pinkBirdCharacter.y = 300;
+            grumpyBirdCharacter.x = 200
+            grumpyBirdCharacter.y = 300;
         };
     };
-
-    //listens for a click on the grumpy bird and selects grumpy bird for character
-    if (x >= grumpyBirdSelection.xpoint && x <= grumpyBirdSelection.xpoint + 175 && y >= grumpyBirdSelection.ypoint && y <= grumpyBirdSelection.ypoint + 125) {
-        //only happens if grumpy bird is not already selected
-        if (char != grumpyBirdCharacter){
-            char = grumpyBirdCharacter;
-            console.log(char.name)
-            homeScreenGrumpyBirdSelectedResize();
-        };
-    };
-
-
-    //listens for start button to be pressed
-    if (x >= startButtonX + 20 && x <= startButtonX + startButtonWidth && y >= startButtonY + 24 && y <= startButtonY+ startButtonHeight - 22 && char != null) {
-        // console.log('start button pressed');
-
-        homeScreenCanvas.style.display ='none';
-        gameScreenCanvas.style.display = 'block';
-        currentDisplay = 'game'
-        obstaclesArray.length = 0;
-
-        //functions the runs the game location on main.js
-        gamePlay();
-        cancelAnimationFrame(homeScreenAnimation);
-        ctxGame.clearRect(0, 0, gameScreenCanvas.width, gameScreenCanvas.height);
-
-        greenBirdCharacter.x = 200;
-        greenBirdCharacter.y = 300;
-        pinkBirdCharacter.x = 200;
-        pinkBirdCharacter.y = 300;
-        grumpyBirdCharacter.x = 200
-        grumpyBirdCharacter.y = 300;
-
-        
-    };
-
-};
-
 };
