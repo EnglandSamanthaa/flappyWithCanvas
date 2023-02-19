@@ -72,7 +72,7 @@ class GamePlayCharacter {
     this.orginalHeight = orginalHeight;
     this.width = width;
     this.height = height;
-    this.weight = 1;
+    this.weight = 3;
     this.frameX = 0;
     this.frameCount = frameCount;
     this.spriteSheet = spriteSheet;
@@ -102,7 +102,7 @@ class GamePlayCharacter {
   };
 
   flap(){
-    this.vy -= 5;
+    this.vy -= 8;
     if (this.frameX >= this.frameCount) this.frameX = 0;
     else if (frame % 2 === 0) this.frameX++;
   };
