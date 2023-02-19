@@ -33,7 +33,7 @@ class Obstacle {
     };
 
     update(){
-        this.x -= gameSpeed + 5;
+        this.x -= gameSpeed + 2;
         if(!this.counted && this.x < char.x){
             score++;
             this.counted = true;
