@@ -60,7 +60,7 @@ let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
-let gameSpeed = 3;
+let gameSpeed = 9;
 let currentDisplay = 'home';
 let homeScreenAnimation;
 let gamePlayAnimation;
