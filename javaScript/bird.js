@@ -1,24 +1,5 @@
 // ------------------------------         Images for player selection choices on homescreen
-const greenSelection = new Image();
-greenSelection.src = 'Images/green.png';
-greenSelectionHeight = (innerHeight/4);
-greenSelectionWidth = (innerWidth/6);
-greenSelectionX = (innerWidth/3.5) - greenSelectionWidth
-greenSelectionY = (innerHeight/3)
 
-const pinkSelection = new Image();
-pinkSelection.src = 'Images/pink.png';
-pinkSelectionHeight = (innerHeight/4);                               
-pinkSelectionWidth = (innerWidth/6);
-pinkSelectionX = (innerWidth/3.5)*2 - pinkSelectionWidth;
-pinkSelectionY = (innerHeight/3)
-
-const grumpySelection = new Image();
-grumpySelection.src = 'Images/grumpy.png';
-grumpySelectionHeight = (innerHeight/4);     
-grumpySelectionWidth = (innerWidth/6);
-grumpySelectionX = (innerWidth/3.5)*3 - grumpySelectionWidth;
-grumpySelectionY = (innerHeight/3)
 
 
 
@@ -41,15 +22,7 @@ const grumpyBirdOrginalWidth = 802;
 
 
 
-//draws the player choices for homescreen selection
-function drawPlayerSelection() {
-  //draws green bird on the start screen
-  ctxStart.drawImage(greenSelection, greenBirdSelection.xpoint, greenBirdSelection.ypoint, greenBirdSelection.width, greenBirdSelection.height);
-  //draws pink bird on the start screen
-  ctxStart.drawImage(pinkSelection, pinkBirdSelection.xpoint, pinkBirdSelection.ypoint, pinkBirdSelection.width, pinkBirdSelection.height);
-  //draws grumpy bird on the start screen
-  ctxStart.drawImage(grumpySelection, grumpyBirdSelection.xpoint, grumpyBirdSelection.ypoint, grumpyBirdSelection.width, grumpyBirdSelection.height);
-};
+
 
 // Homescreen player selection constructor. 
 class CharacterSelection {
@@ -108,14 +81,10 @@ class GamePlayCharacter {
   };
 };
 
-// image of player to selection from on homescreen
-const greenBirdSelection = new CharacterSelection(greenSelectionX, greenSelectionY, greenSelectionHeight, greenSelectionWidth);
-const pinkBirdSelection = new CharacterSelection(pinkSelectionX, pinkSelectionY, pinkSelectionHeight, pinkSelectionWidth);
-const grumpyBirdSelection = new CharacterSelection(grumpySelectionX, grumpySelectionY, grumpySelectionHeight, grumpySelectionWidth);
+
 
 // in game characters
 const greenBirdCharacter = new GamePlayCharacter('Green Bird', 300, 200, greenBirdOrginalWidth, greenBirdOrginalHeight, greenBirdOrginalWidth/12.26, greenBirdOrginalHeight/12.26, 7, greenBirdSprite);
 const pinkBirdCharacter = new GamePlayCharacter('Pink Bird', 300, 200, pinkBirdOrginalWidth, pinkBirdOrginalHeight, pinkBirdOrginalWidth/5.88, pinkBirdOrginalHeight/5.88, 3, pinkBirdSprite);
 const grumpyBirdCharacter = new GamePlayCharacter('Grumpy Bird', 300, 200, grumpyBirdOrginalWidth, grumpyBirdOrginalHeight, grumpyBirdOrginalWidth/8.14, grumpyBirdOrginalHeight/8.14, 7, grumpyBirdSprite);
-
 

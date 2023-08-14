@@ -1,6 +1,6 @@
 // ----------------------- Variables
-var canvasHeight = innerHeight;
-var canvasWidth = innerWidth;
+var canvasHeight = innerHeight * .75;
+var canvasWidth = innerWidth * .75;
 
 const canvasContainer = document.getElementById('canvasContainer');
 canvasContainerHeight = canvasHeight;
@@ -27,9 +27,9 @@ homeIcon.width = 100;
 const startButton = new Image();
 startButton.src = 'Images/startButton.png'
 var startButtonHeight = 175;
-var startButtonWidth = innerWidth/3;
-var startButtonY = (innerHeight/4)*3 ;
-var startButtonX = (innerWidth/2) - (startButtonWidth/2);
+var startButtonWidth = canvasWidth/3;
+var startButtonY = (canvasHeight/4)*3 ;
+var startButtonX = (canvasWidth/2) - (startButtonWidth/2);
 
 //Images of the different layers of the forest background
 const backgroundLayer1 = new Image();
@@ -54,13 +54,41 @@ const BG = {
 
 
 
+
+const greenSelection = new Image();
+greenSelection.src = 'Images/green.png';
+greenSelectionHeight = (canvasHeight/4);
+greenSelectionWidth = (canvasWidth/6);
+greenSelectionX = (canvasWidth/3.5) - greenSelectionWidth
+greenSelectionY = (canvasHeight/3)
+
+const pinkSelection = new Image();
+pinkSelection.src = 'Images/pink.png';
+pinkSelectionHeight = (canvasHeight/4);                               
+pinkSelectionWidth = (canvasWidth/6);
+pinkSelectionX = (canvasWidth/3.5)*2 - pinkSelectionWidth;
+pinkSelectionY = (canvasHeight/3)
+
+const grumpySelection = new Image();
+grumpySelection.src = 'Images/grumpy.png';
+grumpySelectionHeight = (canvasHeight/4);     
+grumpySelectionWidth = (canvasWidth/6);
+grumpySelectionX = (canvasWidth/3.5)*3 - grumpySelectionWidth;
+grumpySelectionY = (canvasHeight/3)
+
+// image of player to selection from on homescreen
+const greenBirdSelection = new CharacterSelection(greenSelectionX, greenSelectionY, greenSelectionHeight, greenSelectionWidth);
+const pinkBirdSelection = new CharacterSelection(pinkSelectionX, pinkSelectionY, pinkSelectionHeight, pinkSelectionWidth);
+const grumpyBirdSelection = new CharacterSelection(grumpySelectionX, grumpySelectionY, grumpySelectionHeight, grumpySelectionWidth);
+
+
 let char = null;
 let spacePressed = false;
 let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
-let gameSpeed = 25
+let gameSpeed = 5;
 let currentDisplay = 'home';
 let homeScreenAnimation;
 let gamePlayAnimation;
@@ -68,6 +96,16 @@ let gamePlayAnimation;
 
 // -----------------------------------------------------------   functions  -------------------------------------------------------------
 
+
+//draws the player choices for homescreen selection
+function drawPlayerSelection() {
+    //draws green bird on the start screen
+    ctxStart.drawImage(greenSelection, greenBirdSelection.xpoint, greenBirdSelection.ypoint, greenBirdSelection.width, greenBirdSelection.height);
+    //draws pink bird on the start screen
+    ctxStart.drawImage(pinkSelection, pinkBirdSelection.xpoint, pinkBirdSelection.ypoint, pinkBirdSelection.width, pinkBirdSelection.height);
+    //draws grumpy bird on the start screen
+    ctxStart.drawImage(grumpySelection, grumpyBirdSelection.xpoint, grumpyBirdSelection.ypoint, grumpyBirdSelection.width, grumpyBirdSelection.height);
+  };
 
 
 //function to create scrolling background
