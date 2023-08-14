@@ -2,11 +2,11 @@ const particlesArray = [];
 
 class Particle {
     constructor(){
-        this.x = char.x + 25;
+        this.x = char.x;
         this.y = char.y + 25;
-        this.size = Math.random() * 7 + 5;
+        this.size = Math.random() * 10;
         this.speedY = (Math.random() * 1) - 0.5;
-        this.color = 'hsla(' + hue + ',100%, 50%, 0.5)';
+        this.color = 'rgb(40, 247, 21)';
     };
 
     update(){

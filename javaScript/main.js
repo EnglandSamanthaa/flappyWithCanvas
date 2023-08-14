@@ -26,9 +26,9 @@ homeIcon.width = 100;
 //Image and variables for the start button
 const startButton = new Image();
 startButton.src = 'Images/startButton.png'
-var startButtonHeight = 175;
-var startButtonWidth = canvasWidth/3;
-var startButtonY = (canvasHeight/4)*3 ;
+var startButtonHeight = 150;
+var startButtonWidth = canvasWidth/4;
+var startButtonY = (canvasHeight/5)*3 ;
 var startButtonX = (canvasWidth/2) - (startButtonWidth/2);
 
 //Images of the different layers of the forest background
@@ -57,22 +57,22 @@ const BG = {
 
 const greenSelection = new Image();
 greenSelection.src = 'Images/green.png';
-greenSelectionHeight = (canvasHeight/4);
-greenSelectionWidth = (canvasWidth/6);
+greenSelectionHeight = (canvasHeight/6);
+greenSelectionWidth = (canvasWidth/9);
 greenSelectionX = (canvasWidth/3.5) - greenSelectionWidth
 greenSelectionY = (canvasHeight/3)
 
 const pinkSelection = new Image();
 pinkSelection.src = 'Images/pink.png';
-pinkSelectionHeight = (canvasHeight/4);                               
-pinkSelectionWidth = (canvasWidth/6);
+pinkSelectionHeight = (canvasHeight/6);                               
+pinkSelectionWidth = (canvasWidth/9);
 pinkSelectionX = (canvasWidth/3.5)*2 - pinkSelectionWidth;
 pinkSelectionY = (canvasHeight/3)
 
 const grumpySelection = new Image();
 grumpySelection.src = 'Images/grumpy.png';
-grumpySelectionHeight = (canvasHeight/4);     
-grumpySelectionWidth = (canvasWidth/6);
+grumpySelectionHeight = (canvasHeight/6);     
+grumpySelectionWidth = (canvasWidth/9);
 grumpySelectionX = (canvasWidth/3.5)*3 - grumpySelectionWidth;
 grumpySelectionY = (canvasHeight/3)
 
@@ -156,10 +156,10 @@ function homeScreen() {
     //(((Find a way to shorten that code and easily pass in other backgrounds)))
     handleBackground();
 
-    //writes pick a character on the home screen
-    ctxStart.font = '100px Black Ops One';
-    ctxStart.fillStyle = 'rgba(0, 230, 69, 1)';
-    ctxStart.fillText('Pick A Character', 225, 125, 350, 75);
+    // //writes pick a character on the home screen
+    // ctxStart.font = '100px Black Ops One';
+    // ctxStart.fillStyle = 'rgba(0, 230, 69, 1)';
+    // ctxStart.fillText('Pick A Character', 225, 125, 350, 75);
 
     //function on bird.js..... draws the player selection
     drawPlayerSelection();
